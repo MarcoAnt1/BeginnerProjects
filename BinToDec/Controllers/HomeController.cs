@@ -2,10 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BinToDec.Controllers
 {
@@ -18,9 +15,16 @@ namespace BinToDec.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int binary)
         {
-            return View();
+            var dec = Convert.ToInt32(Convert.ToString(binary), 2);
+            var binToDec = new BinToDecModel
+            {
+                Decimal = dec,
+                Binary = binary
+            };
+
+            return View(binToDec);
         }
 
         public IActionResult Privacy()
